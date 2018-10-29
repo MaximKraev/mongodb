@@ -129,7 +129,10 @@ module MongoDB
             db.database.users.create(
               username,
               password: password,
-              roles: roles
+              roles: roles,
+              mechanisms:[
+               "SCRAM-SHA-1"
+              ]
             )
             Chef::Log.info("Created user #{username} on #{database}")
           end
@@ -151,7 +154,10 @@ module MongoDB
                   db.database.users.create(
                     username,
                     password: password,
-                    roles: roles
+                    roles: roles,
+                    mechanisms:[
+                      "SCRAM-SHA-1"
+                    ]
                   )
                   Chef::Log.info("Created or updated user #{username} on #{database} of primary replicaset node")
                   break
